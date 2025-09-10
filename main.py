@@ -1,3 +1,10 @@
+############################
+#
+#  Kubra Bill Edit and Rename
+#  Created by: John McGinnes
+#
+############################
+
 # %%
 #############################
 # 
@@ -63,8 +70,20 @@ for filename in os.listdir(folder_path):
             print(f"  Failed to read file '{filename}': {e}")
             continue
 
-        # Replace 'website' with 'website*' (whole word)
-        modified_content = re.sub(r'\bwebsite\b', 'website*', content)
+        # Add XML comment before the closing root tag
+        resubmit_comment = f"<!-- Resubmitted on {datetime.now().strftime('%m/%d/%Y')} by {initials} -->"
+
+        # Try to find the closing root tag and insert the comment before it
+        closing_tag_match = re.search(r'(</\s*BILLPRINTEXTRACTS\s*>)', content, re.IGNORECASE)
+
+        if closing_tag_match:
+            closing_tag = closing_tag_match.group(1)
+            modified_content = content.replace(closing_tag, f"{resubmit_comment}\n{closing_tag}")
+            print("  Added resubmission comment.")
+        else:
+            print("  Could not find closing BILLPRINTEXTRACTS tag — skipping comment.")
+            modified_content = content
+
 
         # Write modified content to new file
         try:

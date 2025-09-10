@@ -6,7 +6,7 @@
 This Python script automates the process of modifying and renaming XML files in a specified directory. It:
 
 - Searches for `.xml` files in the configured folder
-- Replaces occurrences of the word `website` with `website*` (whole word match)
+- Add a comment to the XML to allow the same file to be resent to Kubra
 - Renames each modified file by appending user initials and the current date (e.g., `_JM_06192025`)
 - Moves the original files into an `Archive` folder to keep backups
 
@@ -33,7 +33,7 @@ This helps prepare files for file transfer processes that detect duplicates, by 
 4. **Let the script work**
    The script will:
 
-   * Modify each XML file by replacing the word `website` with `website*`.
+   * Modify each XML file by adding a comment within the XML.
    * Save the modified files with your initials and the current date appended.
    * Move the original files to an `Archive` folder located next to the script for safekeeping.
 
@@ -46,7 +46,6 @@ This helps prepare files for file transfer processes that detect duplicates, by 
 
 * Make sure to back up files before running the script, just in case.
 * Only `.xml` files in the specified folder are processed.
-* The replacement matches the whole word `website` exactly (case-sensitive).
 * The `Archive` folder is created automatically if it does not exist.
 
 ---
